@@ -1,0 +1,21 @@
+# Local MySQL for the helpdesk. Nothing else is containerised —
+# run the API and the client with npm.
+services:
+  db:
+    image: mysql:8.0
+    container_name: helpdesk-mysql
+    restart: unless-stopped
+    command: --default-time-zone=+05:30
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: helpdesk
+      MYSQL_USER: helpdesk
+      MYSQL_PASSWORD: Hd_pr0d_2026_Wq8x
+      TZ: Asia/Kolkata
+    ports:
+      - "3306:3306"
+    volumes:
+      - helpdesk-data:/var/lib/mysql
+
+volumes:
+  helpdesk-data:
